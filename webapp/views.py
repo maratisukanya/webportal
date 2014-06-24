@@ -9,12 +9,12 @@ from django.contrib.auth.decorators import login_required
 
 # import the models here
 from django.contrib.auth.models import User
-from webapp.models import Contributor, Reviewer, Subject ,Comment
+from webapp.models import Contributor, Reviewer, Subject ,Comment, Language
 
 
 # import the forms here
-from webapp.forms import ContributorForm , ReviewerForm, UserForm, ContributorUploadForm, CommentForm
-
+from webapp.forms import ContributorForm, ReviewerForm, UserForm 
+from webapp.forms import ContactForm, ContributorUploadForm, CommentForm
 
 def index(request):
     """
@@ -34,13 +34,49 @@ def index(request):
 
 
 def about(request):
-    """
+    """About page.
+
     Argument:
     
     `REQUEST`: This is the brief description about the site.
     """
     context = RequestContext(request)
     return render_to_response('about.html', context)
+
+
+def contact(request):
+    """Contact us page.
+
+    Arguments:
+    - `Request`:
+    """
+    context = RequestContext(request)
+
+    if request.POST:
+        contactform = ContactForm(data=request.POST)
+        if contactform.is_valid():
+            contactform = contactform.save(commit=True)
+            email_subject = "[aakashschooleducation.org] Contact Us"
+            email_message = "Sender Name: " + contactform.name + "\n\n" + contactform.message
+            #send_mail(email_subject, email_message,
+            #          contactform.email,
+            #          [
+            #              'iclcoolster@gmail.com',
+            #              'Aakashprojects.iitb@gmail.com',
+            #              'aakashmhrd@gmail.com',
+            #          ],
+            #          fail_silently=False)
+            messages.success(request, "Thank you for your reply. We\
+            will get back to you soon.")
+        else:
+            print contactform.errors
+            messages.error(request, "One or more fields are required or not valid.")
+    else:
+        contactform = ContactForm()
+
+    context_dict = {'contactform': contactform}
+    return render_to_response('contact.html', context_dict, context)
+
 
 
 def userlogin(request):
@@ -326,6 +362,24 @@ def reviewer_profile_comment(request,class_num,sub,topics,id):
 
 
 def reviewer_past_approvals(request):
+<<<<<<< HEAD
+    """
+    Argument:
+
+    `REQUEST`: Request from contributor to sign up
+    
+    This function takes the request of user and directs it to the profile page which consists of the reviewer's past approvals.
+    """
+    context = RequestContext(request)
+    reviewer = Reviewer.objects.get(user = request.user)
+    subject = Subject.objects.all().order_by('-uploaded_on')
+    context_dict = { 'subject':subject ,'reviewer':reviewer }
+    return render_to_response("reviewer_past_approvals.html",context_dict,context)
+
+
+def contributor_signup(request):
+=======
+>>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
     """
     Argument:
 
@@ -345,8 +399,20 @@ def contributor_signup(request):
     Argument:
 
     `REQUEST`: Request from contributor to sign up
-    
+
     This function is used for a new contributor to sign up.
+
+    `Usage`: ::
+
+        # Create an instance for UserForm() and ContributotForm()
+        user_form = UserForm(data=request.POST)
+        contributor_form = ContributorForm(data=request.POST)
+	if user_form.is_valid() and contributor_form.is_valid():
+	    user = user_form.save()
+            # do stuff
+        else:
+            # do stuff
+
     """
     context = RequestContext(request)
     registered = False
@@ -482,11 +548,12 @@ def contributor_upload(request):
         print "we have a request for upload by the contributor"
         contributor_upload_form = ContributorUploadForm(request.POST,
                                                         request.FILES)
+
         if contributor_upload_form.is_valid():
-            print "Forms is valid"
+            print "Forms is/are valid"
             subject=contributor_upload_form.save(commit=False)
             # contri=Contributor.objects.get(user_id=id)
-            if ( 'pdf' not in request.FILES and  'video' not in request.FILES and 'animantion' not in request.FILES):		 
+            if ( 'pdf' not in request.FILES and  'animation' not in request.FILES and 'video' not in request.FILES):		 
 	    	# Bad upload details were provided.
             	messages.error(request, "need to provide atleast one upload")
 		contributor_upload_form = ContributorUploadForm()
@@ -497,11 +564,14 @@ def contributor_upload(request):
 		return render_to_response("upload.html", context_dict, context)
 	    else:	
 	    	if 'pdf' in request.FILES:
+			#contributor_upload_form.clean_pdf_doc_file(request)
                 	subject.pdf=request.FILES['pdf']
          	if 'video' in request.FILES:
-               		 subject.video = request.FILES['video']
+			#contributor_upload_form.clean_video_doc_file()
+               		subject.video = request.FILES['video']
            	if 'animation' in request.FILES:
-               		 subject.animation = request.FILES['animation']
+			#contributor_upload_form.clean_animations_doc_file()
+               		subject.animation = request.FILES['animation']
 	    contributor = Contributor.objects.get(user=request.user)
             subject.contributor=contributor
 
@@ -624,7 +694,7 @@ def reviewer_profile_edit(request):
     return render_to_response('reviewer_profile_edit.html', context_dict, context)
 
 
-def content(request):
+def content(request,lang):
     """
     Argument:
 
@@ -632,30 +702,40 @@ def content(request):
     """
     context=RequestContext(request)
     contributor= Contributor.objects.all()
-    uploads = Subject.objects.all().filter(review__gte = 3).order_by('class_number')
-    count = len(uploads)
-    print count
+    uploads = Subject.objects.all().filter(review__gte = 3).filter(language__language=lang).order_by('class_number')
     context_dict = {
 	'uploads': uploads,
-	'count':count,
-        'contributor':contributor
+        'contributor':contributor,
+	'lang':lang
     }
     return render_to_response('content.html',context_dict,context)
 
+def language_select(request):
+    """
+    Argument:
 
-def search(request):
+    `REQUEST`: This requests the particular content. 
+    """
+    context=RequestContext(request)
+    languages = Language.objects.values_list('language',flat=True)
+    context_dict = {'languages' : languages }
+    return render_to_response('language_select.html',context_dict,context)
+
+
+def search(request,lang):
 	context = RequestContext(request)
 	try:
 		user = User.objects.get(username=request.user.username)
 	except:
 		user = None
 	query = request.GET['q']
-	results_topic = Subject.objects.filter(topic__icontains=query).filter(review__gte = 3).order_by('class_number')
-	results_name = Subject.objects.filter(name__icontains=query).filter(review__gte = 3).order_by('class_number')
+	results_topic = Subject.objects.filter(topic__icontains=query).filter(language__language=lang).filter(review__gte = 3).order_by('class_number')
+	results_name = Subject.objects.filter(name__icontains=query).filter(language__language=lang).filter(review__gte = 3).order_by('class_number')
 	template = loader.get_template('search.html')
 	context = Context({'query':query ,
 	 'results_topic':results_topic,
 	  'results_name':results_name,
+	  'lang':lang,
 	  'user':user})
 	response = template.render(context)
 	return HttpResponse(response)
