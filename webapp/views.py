@@ -362,24 +362,6 @@ def reviewer_profile_comment(request,class_num,sub,topics,id):
 
 
 def reviewer_past_approvals(request):
-<<<<<<< HEAD
-    """
-    Argument:
-
-    `REQUEST`: Request from contributor to sign up
-    
-    This function takes the request of user and directs it to the profile page which consists of the reviewer's past approvals.
-    """
-    context = RequestContext(request)
-    reviewer = Reviewer.objects.get(user = request.user)
-    subject = Subject.objects.all().order_by('-uploaded_on')
-    context_dict = { 'subject':subject ,'reviewer':reviewer }
-    return render_to_response("reviewer_past_approvals.html",context_dict,context)
-
-
-def contributor_signup(request):
-=======
->>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
     """
     Argument:
 
