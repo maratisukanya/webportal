@@ -13,6 +13,7 @@
 	        <td><a href="/contributor/profile/{{i}}">Class {{i}}</a></td><hr>	
 		{% endfor %}
 
+<<<<<<< HEAD
 		</table>
             	</div><div class="col-md-1"></div>
       		<div class="col-md-3" style= " background-color:#cad3d9; margin-top:8%"><br/>
@@ -24,6 +25,19 @@
 		{% endif %}
 		<br><br>
                 <a href= "/contributor/upload/">Upload more </a><br><br>
+=======
+				</table>
+            			</div><div class="col-md-1"></div>
+      				<div class="col-md-3" style= " background-color:#cad3d9; margin-top:8%"><br/>
+				<strong>Welcome {{contributor.user.username}}</strong><br><br>
+				{% if contributor.picture %}
+                                <img src="/media/{{contributor.picture}}" width=100px height=100px align="center">
+				{% else %}
+				<img src = "{% static 'img/default.png' %}" width=100px height=100px align="center">
+				{% endif %}
+				<br><br>
+                                <a href= "/contributor/upload/">Upload more </a><br><br>
+>>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
 
 	        <a href="/contributor/profile/edit/">
     	        <button id='Edit-Profile-button' class="btn btn-primary" type='submit' ><span>Edit Profile</span></button></a><br/><br/>
