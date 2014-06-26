@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-- 404
-{% endblock title %}
 
-{% block body_block %}
+
+{% block content %}
     
 <div>
     <img src="{% static 'images/404_page.jpg' %}"
@@ -13,4 +11,4 @@
     class="img-responsive">
 </div>
 
-{% endblock body_block %}
+{% endblock content %}
