@@ -24,21 +24,12 @@ class Contributor(models.Model):
         return self.user.username
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 class Language(models.Model):
     language = models.CharField(max_length=100,blank = False)
 
     def __unicode__(self):
         return u"%s" % (self.language)
 
-<<<<<<< HEAD
-=======
->>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
->>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 class Reviewer(models.Model):
     """
     Fields are:
