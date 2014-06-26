@@ -94,8 +94,6 @@ class Subject(models.Model):
 
     RATING: The field indicates the rating given by the reviewer for his uploaded files. This must be an integer and default value is 0.
 
-    RATING: The field indicates the rating given by the reviewer for his uploaded files. This must be an integer and default value is 0.
-
     REVIEW: This field indicate the number of reviews made by the reviewers. This This must be an integer and default value is 0.
     """
     contributor = models.ForeignKey(Contributor)
