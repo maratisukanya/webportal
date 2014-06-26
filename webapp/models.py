@@ -24,12 +24,21 @@ class Contributor(models.Model):
         return self.user.username
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 class Language(models.Model):
     language = models.CharField(max_length=100,blank = False)
 
     def __unicode__(self):
         return u"%s" % (self.language)
 
+<<<<<<< HEAD
+=======
+>>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
+>>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 class Reviewer(models.Model):
     """
     Fields are:
@@ -91,6 +100,8 @@ class Subject(models.Model):
     UPLOADED_ON: This field is used to obtain the date on which the file is uploaded by the contributor. This must be the date field.
 
     SUMMARY: This is the Summary given by the contributor about the specified topic of the specified subject including when to use and how to use.
+
+    RATING: The field indicates the rating given by the reviewer for his uploaded files. This must be an integer and default value is 0.
 
     RATING: The field indicates the rating given by the reviewer for his uploaded files. This must be an integer and default value is 0.
 

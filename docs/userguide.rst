@@ -1,7 +1,15 @@
 User's guide
+<<<<<<< HEAD
 ============
 
 Introduction
+=======
+
+============
+
+Introduction
+
+>>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 ------------
 
 - Aakash School Education is committed to offering the students free access to its many academic resources. We seek to capitalize on the potential of the internet to eliminate borders and geographic distance as obstacles to the instantaneous exchange of knowledge and new ideas. Unlike distance learning programs that charge tuition, provide formal instruction and limit participation, we offer all course materials free to everyone with online access. People from around the world may upload their content and students can make use of our extensive library of content, including interactive challenges, assessments, and videos from any computer with access to the web. ASE does not require any registration and is not a degree-granting or certificate-granting activity rather it is instead an effort to share knowledge and make sure the students have access to world class education content making full use of the Internet's potential.
@@ -66,6 +74,7 @@ Introduction
 
 - The Ubuntu project is publicly committed to the principles of open source development; people are encouraged to use free software, study how it works, improve upon it, and distribute it.
 
+<<<<<<< HEAD
 
 
 Description
@@ -151,4 +160,9 @@ Reference
 - `<http://stackoverflow.com/>`_
 
 
+=======
+Description
+
+-----------
+>>>>>>> ea62a4d0e02d31902a065166364c850ee9aad305
 
