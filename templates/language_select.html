@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container" style="padding-top:10% ; padding-bottom:10%">
 <div class="col-md-12" style= " background-color:#d5dce1; margin-top:8%">
-<center><h3>PLEASE SELECT YOUR LANGUAGE</h3></center>
+<center><h3><i class="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;PLEASE SELECT YOUR LANGUAGE</h3></center>
 			
 <div style="width:230px; margin:0 auto;">
 		                <div ul class="dropdown" align="center"> 
@@ -10,7 +10,7 @@
 		          data-toggle="dropdown" align="center"><strong>Language</strong><b class="caret"></b></a>
 		       <ul class="dropdown-menu">
 			 {% for i in languages %}
-			 <li><a href="/content/{{i}}/">{{i}}</a></li>
+			 <li><a href="/content/{{i}}/">{{i|capfirst}}</a></li>
 			 {% endfor %}
 		       </ul>
 		     </ul>
