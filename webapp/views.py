@@ -48,8 +48,7 @@ def about(request):
     Argument:
 
     `request`: Request from client
-    This function takes the request of the client and direct it to the page
-consisting of the description about the site.
+    This function takes the request of the client and direct it to the page consisting of the description about the site.
     """
     context = RequestContext(request)
     return render_to_response('about.html', context)
@@ -60,8 +59,7 @@ def contact(request):
 
     Arguments:
     `request`: Request from the client.
-    This function takes the request of the client and direct it to the contact
-us page.
+    This function takes the request of the client and direct it to the contact us page.
     """
     context = RequestContext(request)
 
@@ -70,8 +68,7 @@ us page.
         if contactform.is_valid():
             contactform = contactform.save(commit=True)
             email_subject = "[aakashschooleducation.org] Contact Us"
-            email_message = "Sender Name: " + contactform.name + "\n \
-\n" + contactform.message
+            email_message = "Sender Name: " + contactform.name + "\n \\n" + contactform.message
             #send_mail(email_subject, email_message,
             #          contactform.email,
             #          [
@@ -80,12 +77,10 @@ us page.
             #              'aakashmhrd@gmail.com',
             #          ],
             #          fail_silently=False)
-            messages.success(request, "Thank you for your reply. We\
-will get back to you soon.")
+            messages.success(request, "Thank you for your reply. We will get back to you soon.")
         else:
             print contactform.errors
-            messages.error(request, "One or more fields are required or not \
-            valid.")
+            messages.error(request, "One or more fields are required or not valid.")
     else:
         contactform = ContactForm()
 
@@ -98,8 +93,7 @@ def userlogin(request):
     Argument:
 
     `request`: Request from the user to login
-    This function takes the request of the user and direct it to the login
-page.
+    This function takes the request of the user and direct it to the login page.
     """
     context = RequestContext(request)
     if request.user.is_authenticated():
@@ -185,8 +179,7 @@ def contributor_profile_subject(request, class_num):
 
     `class_num`: Class in which the logged in contributor has contributed
 
-    This function takes the request of user and direct it to profile page
-which consists of his contributions in a specific class.
+    This function takes the request of user and direct it to profile page which consists of his contributions in a specific class.
     """
     context = RequestContext(request)
     contributor = Contributor.objects.get(user=request.user)
@@ -213,8 +206,7 @@ def contributor_profile_topic(request, class_num, sub):
 
     `sub`: Subject in which the logged in contributor has contributed
 
-    This function takes the request of user and direct it to profile page
-which consists of his contributions in a specific subject of a  specific class.
+    This function takes the request of user and direct it to profile page which consists of his contributions in a specific subject of a  specific class.
     """
     context = RequestContext(request)
     contributor = Contributor.objects.get(user=request.user)
@@ -242,9 +234,7 @@ def contributor_profile_comment(request, class_num, sub, topics, id):
 
     `topics`: Subject topic in which the logged in contributor has contributed.
 
-     This function takes the request of user and direct it to profile page
-which consists of his comments of reviewer on a specific subject of a  specific
-class.
+     This function takes the request of user and direct it to profile page which consists of his comments of reviewer on a specific subject of a  specific class.
     """
     context = RequestContext(request)
     contributor = Contributor.objects.get(user=request.user)
@@ -271,15 +261,11 @@ def contributor_profile_topic_detail(request, class_num, sub, topics, id):
 
     `sub`: Subject in which the logged in contributor has contributed.
 
-    `topics`: Subject topic in which the logged in contributor has
-contributed.
+    `topics`: Subject topic in which the logged in contributor has contributed.
 
-    `id`: Id of the subject in which the logged in contributor has
-contributed.
+    `id`: Id of the subject in which the logged in contributor has contributed.
 
-    This function takes the request of user and direct it to profile page which
-consists of his comments of reviewer on a specified topic of a subject of a
-specific class.
+    This function takes the request of user and direct it to profile page which consists of his comments of reviewer on a specified topic of a subject of a specific class.
     """
     context = RequestContext(request)
     contributor = Contributor.objects.get(user=request.user)
@@ -299,15 +285,15 @@ def topic(request,class_num,sub,topics,id):
     """
     Arguments:
 
-    `REQUEST`: Request from user.
+    `request`: Request from user.
 
-    `CLASS_NUM` : Class in which the logged in contributor has contributed.
+    `class_num` : Class in which the logged in contributor has contributed.
 
-    `SUB` : Subject in which the logged in contributor has contributed.
+    `sub` : Subject in which the logged in contributor has contributed.
 
-    `TOPICS` : Subject topic in which the logged in contributor has contributed.
+    `topics` : Subject topic in which the logged in contributor has contributed.
 
-    `ID` : Id of the subject in which the logged in contributor has contributed.
+    `id` : Id of the subject in which the logged in contributor has contributed.
 
     This function takes the request of user and direct it to profile page which consists of details of a specified topic of a subject of a specific class.
     """
@@ -327,15 +313,11 @@ def reviewer_profile_topic_detail(request, class_num, sub, topics, id):
 
     `sub`: Subject in which the logged in contributor has contributed.
 
-    `topics`: Subject topic in which the logged in contributor has
-contributed.
+    `topics`: Subject topic in which the logged in contributor has contributed.
 
-    `id`: Id of the subject in which the logged in contributor has
-contributed.
+    `id`: Id of the subject in which the logged in contributor has contributed.
 
-    This function takes the request of user and direct it to profile page which
-consists of his comments of reviewer on a specified topic of a subject of a
-specific class.
+    This function takes the request of user and direct it to profile page which consists of his comments of reviewer on a specified topic of a subject of a specific class.
     """
     context = RequestContext(request)
     reviewer = Reviewer.objects.get(user=request.user)
@@ -379,8 +361,7 @@ def reviewer_profile_subject(request, class_num):
 
     `class_num` : Class in which the contributor has contributed.
 
-    This function takes the request of user and direct it to the profile page
-which consists of the contributor's contributions in a specific class.
+    This function takes the request of user and direct it to the profile page which consists of the contributor's contributions in a specific class.
     """
     context = RequestContext(request)
     reviewer = Reviewer.objects.get(user=request.user)
@@ -405,9 +386,7 @@ def reviewer_profile_topic(request, class_num, sub):
 
     `sub`: subject in which the contributor has contributed.
 
-    This function takes the request of user and directs it to the profile page
-which consists of the contributor's contributions in a specific subject of a
-specific class.
+    This function takes the request of user and directs it to the profile page which consists of the contributor's contributions in a specific subject of a specific class.
     """
     context = RequestContext(request)
     reviewer = Reviewer.objects.get(user=request.user)
@@ -445,9 +424,7 @@ def reviewer_profile_comment(request, class_num, sub, topics, id):
 
     `id`: Id of the reviewer.
 
-    This function takes the request of user and directs it to the profile page
-which consists of the contributor's contributions in a specific subject of a
-specific class.
+    This function takes the request of user and directs it to the profile page which consists of the contributor's contributions in a specific subject of a specific class.
     """
     context = RequestContext(request)
     comment = Comment.objects.filter(subject_id=id).order_by('-submit_date')
@@ -480,31 +457,12 @@ specific class.
 
 
 def reviewer_past_approvals(request):
-<<<<<<< HEAD
-    """
-    Argument:
-
-    `REQUEST`: Request from contributor to sign up
-    
-    This function takes the request of user and directs it to the profile page which consists of the reviewer's past approvals.
-    """
-    context = RequestContext(request)
-    reviewer = Reviewer.objects.get(user = request.user)
-    subject = Subject.objects.all().order_by('-uploaded_on')
-    context_dict = { 'subject':subject ,'reviewer':reviewer }
-    return render_to_response("reviewer_past_approvals.html",context_dict,context)
-
-
-def contributor_signup(request):
-=======
->>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
     """
     Argument:
 
     `request`: Request from contributor to sign up.
 
-    This function takes the request of user and directs it to the profile page
-which consists of the reviewer's past approvals.
+    This function takes the request of user and directs it to the profile page which consists of the reviewer's past approvals.
     """
     context = RequestContext(request)
     reviewer = Reviewer.objects.get(user=request.user)
@@ -566,8 +524,7 @@ Waiting for your your approval"""
 #           ['pri.chundawat@gmail.com'],fail_silently=False)
             messages.success(
                 request,
-                "Form successfully submitted. Waiting for activation \
-from admin.")
+                "Form successfully submitted. Waiting for activation from admin.")
             return HttpResponseRedirect('webapp.views.contributor_signup')
         else:
             if contributor_form.errors or user_form.errors:
@@ -580,8 +537,7 @@ from admin.")
         'contributor_form': contributor_form,
         'registered': registered,
     }
-    return render_to_response('webapp/contributor_signup.html',
-                              context_dict, context)
+    return render_to_response('webapp/contributor_signup.html',context_dict, context)
 
 
 def reviewer_signup(request):
@@ -623,8 +579,7 @@ Waiting for your your approval"""
             #           ['pri.chundawat@gmail.com'],fail_silently=False)
             messages.success(
                 request,
-                "form successfully submitted. Waiting for activation  from \
-admin.")
+                "form successfully submitted. Waiting for activation  from admin.")
             return HttpResponseRedirect('webapp.views.reviewer_signup')
         else:
             if reviewer_form.errors or user_form.errors:
@@ -637,8 +592,7 @@ admin.")
         'reviewer_from': reviewer_form,
         'registered': registered,
     }
-    return render_to_response('webapp/reviewer_signup.html',
-                              context_dict, context)
+    return render_to_response('webapp/reviewer_signup.html',context_dict, context)
 
 
 def user_logout(request):
@@ -676,8 +630,7 @@ def contributor_upload(request):
     uploaded = False
     if request.POST:
         print "we have a request for upload by the contributor"
-        contributor_upload_form = ContributorUploadForm(request.POST,
-                                                        request.FILES)
+        contributor_upload_form = ContributorUploadForm(request.POST,request.FILES)
 
         if contributor_upload_form.is_valid():
             print "Forms is/are valid"
@@ -739,8 +692,7 @@ def contributor_profile_edit(request):
     contributor = get_object_or_404(Contributor, user=request.user)
     if request.method == 'POST':
         print "We've a request to register"
-        contributorform = ContributorForm(data=request.POST,
-                                          instance=contributor)
+        contributorform = ContributorForm(data=request.POST,instance=contributor)
         userform = UserForm(data=request.POST, instance=user)
         if contributorform.is_valid() and userform.is_valid():
             print "Forms are Valid"
@@ -768,8 +720,7 @@ def contributor_profile_edit(request):
         contributorform = ContributorForm(instance=contributor)
         userform = UserForm(instance=user)
     context_dict = {'contributorform': contributorform, 'userform': userform}
-    return render_to_response('contributor_profile_edit.html',
-                              context_dict, context)
+    return render_to_response('contributor_profile_edit.html',context_dict, context)
 
 
 @login_required
@@ -799,8 +750,7 @@ def reviewer_profile_edit(request):
                 messages.error(request, 'Username cant be changed')
                 context_dict = {'reviewerform': reviewerform,
                                 'userform': userform}
-                return render_to_response('reviewer_profile_edit.html',
-                                          context_dict, context)
+                return render_to_response('reviewer_profile_edit.html',context_dict, context)
             user.set_password(user.password)
             user.save()
             reviewer = reviewerform.save(commit=False)
@@ -818,8 +768,7 @@ def reviewer_profile_edit(request):
 
     context_dict = {'reviewerform': reviewerform,
                     'userform': userform}
-    return render_to_response('reviewer_profile_edit.html',
-                              context_dict, context)
+    return render_to_response('reviewer_profile_edit.html',context_dict, context)
 
 
 def content(request, lang):
@@ -896,8 +845,11 @@ def detail_user(request):
    """
    context = RequestContext(request)
    contributor = Contributor.objects.all()
-   print contributor[0].picture
    reviewer = Reviewer.objects.all()
+   if contributor:
+       print contributor[0].picture
+   else:
+       print "Sorry, no contributor found."
    context_dict = {'contributor': contributor,
                    'reviewer': reviewer,
 		  }
