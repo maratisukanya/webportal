@@ -18,7 +18,7 @@ Introduction
   degree-granting or certificate-granting activity rather it is
   instead an effort to share knowledge and make sure the students have
   access to world class education content making full use of the
-  Internet's potential.
+  Internets potential.
 
 - The main purpose of creating web Application is to initialize
   task,it is an important part of the process. It requires putting
@@ -44,7 +44,7 @@ Introduction
 
 - Python is dynamic.
   - Being a dynamic language means that new code can be executed
-    during runtime without limitations.
+    during run time without limitations.
 
 - Django is a high-level Python Web framework that encourages rapid
   development and clean, pragmatic design.
@@ -189,7 +189,7 @@ Introduction
   further.
 
 - Distros designed to replace your existing operating system some
-  othere linux distros are Ubuntu,OpenSUSE,Fedora etc.
+  other linux distros are Ubuntu,OpenSUSE,Fedora etc.
 
 - Ubuntu is a Debian-based Linux operating system, with Unity as its
   default desktop environment (GNOME was the previous desktop
@@ -256,15 +256,15 @@ Workflow
   contact, picture and validation-docs in the registration form. Now
   the administrator will check the details of contributor and if the
   access permissions are granted then they can upload any file
-  formats. Here the access permissions are given to contibutor by
-  admin based on the capabilites of validation-docs.
+  formats. Here the access permissions are given to contributor by
+  admin based on the capabilities of validation-docs.
 
 - Reviewer: A reviewer can sign up by filling their name, contact and
   picture in the registration form. Now the administrator will check
   the details of reviewer and if the access permissions are granted
   then they can comment on the uploaded files.
 
-- Faq: Faq consists of fields like questions and answers. It describes
+- FAQ: FAQ consists of fields like questions and answers. It describes
   the frequently asked questions and answers by users.
 
 - Language: Users can download or view the files in three different

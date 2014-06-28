@@ -4,16 +4,19 @@ from django.core.validators import RegexValidator
 
 
 class Contributor(models.Model):
-    """
-    Fields are:
+    """Fields are:
 
     user: This is the Default django user object
 
-    contact: This is the contact number of the user. It must be an integer.
+    contact: This is the contact number of the user. It must be an
+    integer.
 
-    picture: The profile picture of the contributor. may be jpg or jpeg or png or bmp.
+    picture: The profile picture of the contributor. may be jpg or
+    jpeg or png or bmp.
 
-    validation_docs: The Valid certificate of the user stating his educational qualifications.
+    validation_docs: The Valid certificate of the user stating his
+    educational qualifications.
+
     """
     user = models.OneToOneField(User)
     # Addition info
@@ -34,14 +37,16 @@ class Language(models.Model):
 
 
 class Reviewer(models.Model):
-    """
-    Fields are:
+    """Fields are:
 
     user: This is the Default django user object.
 
-    contact: This is the contact number of the user. It must be an integer.
+    contact: This is the contact number of the user. It must be an
+    integer.
 
-    picture: The profile picture of the contributor. may be jpg or jpeg or png or bmp.
+    picture: The profile picture of the contributor. may be jpg or
+    jpeg or png or bmp.
+
     """
     user = models.OneToOneField(User)
     # Addition info
@@ -53,12 +58,13 @@ class Reviewer(models.Model):
 
 
 class Class(models.Model):
-    """
-    Fields are:
+    """Fields are:
 
-    class_number: This will be class number like first, second .. eight ..tenth.
+    class_number: This will be class number like first, second
+    .. eight ..tenth.
 
     remark: This is the remark given by the teacher.
+
     """
     class_number = models.IntegerField(default=1)
     remark = models.TextField()
@@ -158,15 +164,17 @@ class Subject(models.Model):
 
 
 class Contact(models.Model):
-    """
-    Fields are:
+    """Fields are:
 
-    name: This field indicates the name of the non-user who wants to suggest any modifications.
+    name: This field indicates the name of the non-user who wants to
+    suggest any modifications.
 
     email: This fied indicates the mail-id of the non-user.
 
-    message: This field describes the modifications suggested by the non-user, if any.
-"""
+    message: This field describes the modifications suggested by the
+    non-user, if any.
+
+    """
     name = models.CharField(max_length=200)
     email = models.EmailField(unique=False)
     message = models.TextField(max_length=500)
@@ -176,12 +184,13 @@ class Contact(models.Model):
 
 
 class Faq(models.Model):
-    """
-    Fields are:
+    """Fields are:
 
     question: This field descibes the frequently asked questions.
 
-    answer: This field describes the answers for the frequently asked questions.
+    answer: This field describes the answers for the frequently asked
+    questions.
+
     """
     question = models.TextField(max_length=500)
     answer = models.TextField()

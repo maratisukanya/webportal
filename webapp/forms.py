@@ -8,14 +8,14 @@ from models import Subject, Comment, Language, Contact
 
 
 class ContactForm(forms.ModelForm):
-    """
-    Fields are:
+    """Fields are:
 
     name: This field tells the name of the student contacting us.
 
     email: This field tells the email of the student contacting us.
 
     message: This field tells the message of the student contacting us
+
     """
     name = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -99,14 +99,17 @@ class UserForm(forms.ModelForm):
 
 
 class ContributorForm(forms.ModelForm):
-    """
-    Fields are:
+    """Fields are:
 
-    contact: This is the contact number of the user. It must be an integer.
+    contact: This is the contact number of the user. It must be an
+    integer.
 
-    validation_docs: The Valid certificate of the user stating his educational qualifications.
+    validation_docs: The Valid certificate of the user stating his
+    educational qualifications.
 
-    picture: The profile picture of the contributor. may be jpg or jpeg or png or bmp.
+    picture: The profile picture of the contributor. may be jpg or
+    jpeg or png or bmp.
+
     """
     contact = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -140,12 +143,14 @@ class ContributorForm(forms.ModelForm):
 
 
 class ReviewerForm(forms.ModelForm):
-    """
-    Fields are:
+    """Fields are:
 
-    picture: The profile picture of the Reviewer. may be jpg or jpeg or png or bmp.
+    picture: The profile picture of the Reviewer. may be jpg or jpeg
+    or png or bmp.
 
-    contact: This is the contact number of the user. It must be an integer.
+    contact: This is the contact number of the user. It must be an
+    integer.
+
     """
     error_css_class = 'error'
     required_css_class = 'required'
@@ -169,22 +174,31 @@ class ReviewerForm(forms.ModelForm):
 
 
 class ContributorUploadForm(forms.ModelForm):
-    """
-    Fields are:
+    """Fields are:
 
-    class_number: This will be class number like first, second .. eight .. tenth.
+    class_number: This will be class number like first, second
+    .. eight .. tenth.
 
-    name: This field is the name of the subject,the contributor is specialized in.
+    name: This field is the name of the subject,the contributor is
+    specialized in.
 
-    topic: The subject of the topic the contibutor is going to contribute.
+    topic: The subject of the topic the contibutor is going to
+    contribute.
 
-    pdf: The contributor has to upload the files.This field describes that the uploaded file must be a pdf file.
+    pdf: The contributor has to upload the files.This field describes
+    that the uploaded file must be a pdf file.
 
-    video: The contributor has to upload the files.This field describes that the uploaded file must be a video. May be mp4.
+    video: The contributor has to upload the files.This field
+    describes that the uploaded file must be a video. May be mp4.
 
-    animation: The contributor has to upload the files.This field describes that the uploaded file must be an animation file. This may be gif.
+    animation: The contributor has to upload the files.This field
+    describes that the uploaded file must be an animation file. This
+    may be gif.
 
-    summary: This is the summary given by the contributor about the specified topic of the specified subject including when to use and how to use.
+    summary: This is the summary given by the contributor about the
+    specified topic of the specified subject including when to use and
+    how to use.
+
     """
     language = forms.ModelChoiceField(
         label='Language',
@@ -286,10 +300,11 @@ class ContributorUploadForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    """
-    Field  is:
+    """Field  is:
 
-    comment: This field describes the comment form which takes maximum length of 1000 characters. The comment is made by the reviewer.
+    comment: This field describes the comment form which takes maximum
+    length of 1000 characters. The comment is made by the reviewer.
+
     """
     comment = forms.CharField(
         widget=forms.Textarea(
