@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib import messages
+from captcha.fields import ReCaptchaField
 
-#import the models here
+# Import the models here
+
 from models import Contributor, Reviewer, Class
 from models import Subject, Comment, Language, Contact
 
@@ -16,6 +18,7 @@ class ContactForm(forms.ModelForm):
     email: This field tells the email of the student contacting us.
 
     message: This field tells the message of the student contacting us
+
     """
     name = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -36,10 +39,11 @@ class ContactForm(forms.ModelForm):
             'rows': 4}),
         help_text="Please write your message.",
         required=True)
+    captcha = ReCaptchaField(attrs={'theme': 'clean'})
 
     class Meta:
         model = Contact
-        fields = ['name', 'email', 'message']
+        fields = ['name', 'email', 'message', 'captcha']
 
 
 class UserForm(forms.ModelForm):
@@ -55,6 +59,7 @@ class UserForm(forms.ModelForm):
     email: Email field tells the mail id of the user who sign in.
 
     password: This tells the user to set his own password.
+
     """
     username = forms.CharField(
         label='Username',
@@ -102,13 +107,15 @@ class ContributorForm(forms.ModelForm):
     """
     Fields are:
 
-    contact: This is the contact number of the user. It must be an integer.
+    contact: This is the contact number of the user. It must be an
+    integer.
 
     validation_docs: The Valid certificate of the user stating his
-educational qualifications.
+    educational qualifications.
 
-    picture: The profile picture of the contributor. may be jpg or jpeg or
-png or bmp.
+    picture: The profile picture of the contributor. may be jpg or
+    jpeg or png or bmp.
+    
     """
     contact = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -127,10 +134,11 @@ png or bmp.
         widget=forms.FileInput(attrs={
             'placeholder': 'Contributor picture.'}),
         required=False)
+    captcha = ReCaptchaField(attrs={'theme': 'clean'})
 
     class Meta:
         model = Contributor
-        fields = ('picture', 'contact', 'validation_docs')
+        fields = ('picture', 'contact', 'validation_docs', 'captcha')
 
     def clean_validtion_docs_file(self):
         """Limit doc_file upload size."""
@@ -145,11 +153,12 @@ class ReviewerForm(forms.ModelForm):
     """
     Fields are:
 
-    picture: The profile picture of the Reviewer. may be jpg or jpeg or png
-or bmp.
+    picture: The profile picture of the Reviewer. may be jpg or jpeg
+    or png or bmp.
 
     contact: This is the contact number of the user. It must be an integer.
-    """
+ 
+   """
     error_css_class = 'error'
     required_css_class = 'required'
 
@@ -165,35 +174,40 @@ or bmp.
         help_text="",
         required=False,
         error_messages={'required': 'Last name is required.'})
+    captcha = ReCaptchaField(attrs={'theme': 'clean'})
 
     class Meta:
         model = Reviewer
-        fields = ('picture', 'contact')
+        fields = ('picture', 'contact', 'captcha')
 
 
 class ContributorUploadForm(forms.ModelForm):
     """
     Fields are:
 
-    class_number: This will be class number like first, second .. eight ..
-tenth.
+    class_number: This will be class number like first, second
+    .. eight ..  tenth.
 
-    name: This field is the name of the subject,the contributor is specialized
-in.
+    name: This field is the name of the subject,the contributor is
+    specialized in.
 
-    topic: The subject of the topic the contibutor is going to contribute.
+    topic: The subject of the topic the contibutor is going to
+    contribute.
 
-    pdf: The contributor has to upload the files.This field describes that the
-uploaded file must be a pdf file.
+    pdf: The contributor has to upload the files.This field describes
+    that the uploaded file must be a pdf file.
 
-    video: The contributor has to upload the files.This field describes that
-the uploaded file must be a video. May be mp4.
+    video: The contributor has to upload the files.This field
+    describes that the uploaded file must be a video. May be mp4.
 
-    animation: The contributor has to upload the files.This field describes
-that the uploaded file must be an animation file. This may be gif.
+    animation: The contributor has to upload the files.This field
+    describes that the uploaded file must be an animation file. This may
+    be gif.
 
-    summary: This is the summary given by the contributor about the specified
-topic of the specified subject including when to use and how to use.
+    summary: This is the summary given by the contributor about the
+    specified topic of the specified subject including when to use and how
+    to use.
+    
     """
     language = forms.ModelChoiceField(
         label='Language',
@@ -298,8 +312,9 @@ class CommentForm(forms.ModelForm):
     """
     Field  is:
 
-    comment: This field describes the comment form which takes maximum length
-of 1000 characters. The comment is made by the reviewer.
+    comment: This field describes the comment form which takes maximum
+    length of 1000 characters. The comment is made by the reviewer.
+    
     """
     comment = forms.CharField(
         widget=forms.Textarea(
