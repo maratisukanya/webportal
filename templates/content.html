@@ -81,20 +81,20 @@
                     {% endif %} 
                     </td>  
                     </tr>
-                    </tbody>        
+                    </tbody>  
                    
                  
      
                 {% endfor %}
 
 
-		</table>
+		
 	<ul class="pagination" id="pageNavPosition"></ul> 
 				{% else %}
-  				<p>Nothing to display.</p>
+  				<p>Nothing to display.</p><br><br><br><br><br><br><br><br><br>
   				{% endif %}
-
-
+                 </table></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
 <script src="{% static 'js/paging.js' %}"></script>
@@ -104,5 +104,5 @@ pager.init();
 pager.showPageNav('pager', 'pageNavPosition');
 pager.showPage(1);
 </script>
-</div>
+
 {% endblock content %}

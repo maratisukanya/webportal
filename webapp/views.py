@@ -19,12 +19,13 @@ from webapp.forms import ContactForm, ContributorUploadForm, CommentForm
 
 
 def index(request):
-    """
-    Argument:
+    """Argument:
 
     `request`: Request from client.
 
-    This function takes the request of client and direct it to home page.
+    This function takes the request of client and direct it to home
+    page.
+
     """
     context = RequestContext(request)
     latest_uploads_all = Subject.objects.all()
@@ -331,7 +332,8 @@ def topic(request,class_num,sub,topics,id):
     """
     context = RequestContext(request)
     subject = Subject.objects.get(id=id)
-    context_dict = {'subject': subject, 'class_num':class_num, 'sub':sub,'topics':topics,'id':id}
+    context_dict = {'subject': subject, 'class_num':class_num,
+                    'sub':sub,'topics':topics,'id':id}
     return render_to_response('topic.html', context_dict, context)
 
 
@@ -374,13 +376,13 @@ def reviewer_profile_topic_detail(request, class_num, sub, topics, id):
 
 @login_required
 def reviewer_profile(request):
-    """
-    Arguments:
+    """Arguments:
 
     `request`: Request from user.
 
-    This function takes the request of user and directs it to the profile page.
-    
+    This function takes the request of user and directs it to the
+    profile page.
+
     """
     context = RequestContext(request)
     reviewer = Reviewer.objects.get(user=request.user)
@@ -450,7 +452,8 @@ def reviewer_profile_topic(request, class_num, sub):
         'sub': sub,
         'reviewer': reviewer,
     }
-    return render_to_response('reviewer_topic.html', context_dict, context)
+    return render_to_response('reviewer_topic.html', context_dict,
+                              context)
 
 
 def reviewer_profile_comment(request, class_num, sub, topics, id):
@@ -931,10 +934,11 @@ def search(request, lang):
 
 
 def detail_user(request):
-   """
-   Argument:
+   """Argument:
 
-   `request`: This function redirects to the page having detailed information of contributor and reviewer
+   `request`: This function redirects to the page having detailed
+   information of contributor and reviewer
+
    """
    context = RequestContext(request)
    contributor = Contributor.objects.all()
@@ -950,10 +954,11 @@ def detail_user(request):
 
 
 def developer_team(request):
-   """
-   Argument:
+   """Argument:
 
-   `request`: This function redirects to the page having detailed information of Developer team.
+   `request`: This function redirects to the page having detailed
+   information of Developer team.
+
    """
    context = RequestContext(request)
    return render_to_response('developers_page.html',context)
