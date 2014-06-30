@@ -34,15 +34,18 @@ Introduction
   language.It’s designed to be easy to learn, read and program.
 
 - Python is open.
+
   - Python is open source software, distributed under a liberal
     license, and can thus be distributed freely.
 
 - Python is general purpose.
+
   - Python is a general purpose language, which means that many things
     are made easy. Examples are string processing, reading/writing
     files, sockets, websites, databases, GUI’s.
 
 - Python is dynamic.
+
   - Being a dynamic language means that new code can be executed
     during run time without limitations.
 
