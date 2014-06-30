@@ -28,19 +28,13 @@ qualifications.
         return self.user.username
 
 
-<<<<<<< HEAD
-=======
 class Language(models.Model):
     language = models.CharField(max_length=100, blank=False)
 
     def __unicode__(self):
         return u"%s" % (self.language)
 
-<<<<<<< HEAD
->>>>>>> de27ca1c422dfcecf2b3571295a6e5fce373bbfa
-=======
 
->>>>>>> ddc8d3bd68f6443736f88371d5256bf34cc7cd83
 class Reviewer(models.Model):
     """
     Fields are:
